@@ -11,7 +11,7 @@ const schema = a.schema({
     deviceType: a.string(),
     browserName: a.string(),
     osName: a.string()
-  }).authorization(allow => allow.public().to(['create']))
+  }).authorization(allow => [allow.publicApiKey()])
 });
 
 export type Schema = ClientSchema<typeof schema>;
