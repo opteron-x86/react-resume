@@ -1,39 +1,56 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import { useState } from "react";
+import './App.css';
+import { useVisitorTracking } from './hooks/useVisitorTracking';
+import {
+  Header,
+  Summary,
+  Experience,
+  Skills,
+  Projects,
+  Education,
+  Certifications,
+  Footer,
+  ContactForm
+} from './components';
 
-const client = generateClient<Schema>();
+// Define theme colors
+const themeColors = {
+  primary: '#1a4b77',
+  secondary: '#2c7da0',
+  accent: '#a9d6e5',
+  textColor: '#2c3e50',
+  lightText: '#58738b',
+  background: '#ffffff',
+  sectionBg: '#f8f9fa',
+  borderColor: '#e9ecef',
+};
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
+  useVisitorTracking();
+  const [showContactForm, setShowContactForm] = useState<boolean>(false);
+  
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
+    <div className="app-container" style={{ backgroundColor: themeColors.background }}>
+      <div className="resume-container">
+        <Header
+          onContactClick={() => setShowContactForm(true)}
+        />
+        <main className="resume-content">
+          <Summary />
+          <Skills />
+          <Experience />
+          <Projects />
+          <div className="two-column-section">
+            <Certifications />
+            <Education />
+          </div>
+        </main>
+        <Footer />
       </div>
-    </main>
+      {showContactForm && (
+        <ContactForm onClose={() => setShowContactForm(false)} />
+      )}
+    </div>
   );
 }
 

@@ -1,0 +1,143 @@
+.experience-section {
+    margin-bottom: 30px;
+  }
+  
+  .jobs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .job-item {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+  }
+  
+  .job-header:hover {
+    background-color: #8bc4d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-title-container {
+    flex: 1;
+  }
+  
+  .job-company {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  
+  .job-location {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: var(--light-text);
+  }
+  
+  .expand-icon {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .job-details {
+    padding: 0 20px 20px;
+    background-color: white;
+    animation: fadeIn 0.3s ease;
+    overflow: hidden;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 2000px;
+    }
+  }
+  
+  .position-item {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .position-item:last-child {
+    border-bottom: none;
+  }
+  
+  .position-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .position-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--secondary-color);
+  }
+  
+  .position-period {
+    font-size: 14px;
+    color: var(--light-text);
+    font-weight: normal;
+  }
+  
+  .responsibilities-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 10px 0 0;
+  }
+  
+  .responsibilities-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .responsibilities-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .position-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .position-period {
+      margin-top: 5px;
+    }
+  }
