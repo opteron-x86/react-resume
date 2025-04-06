@@ -1,16 +1,15 @@
-# Cloud Security Professional Resume Website
+# Professional Resume Website
 
-A modern, interactive resume website built with React, TypeScript, and AWS Amplify, showcasing professional experience and cloud development skills.
+A modern, interactive resume website built with React, TypeScript, and AWS Amplify.
 
 ## Features
 
 - **Modern React Frontend**: Built with React, TypeScript, and Vite for a fast, responsive user experience
 - **AWS Cloud Architecture**: Leverages AWS Amplify for hosting and AWS services for backend functionality
 - **Interactive UI Components**: Dynamic sections for experience, certifications, and projects
-- **Secure Certificate Display**: View professional certifications securely stored in S3
+- **Secure S3 Object Display**: View certifications securely stored in S3
 - **Contact Form**: Easy-to-use contact form with serverless backend
-- **Visitor Analytics**: Anonymous tracking of site visitors with geographic data
-- **Admin Dashboard**: Secure admin area for monitoring site statistics
+- **Visitor Analytics**: Anonymous logging of site visits for site metrics
 - **Mobile Responsive**: Optimized for all device sizes
 
 ## Tech Stack
@@ -23,7 +22,7 @@ A modern, interactive resume website built with React, TypeScript, and AWS Ampli
 - Axios for API requests
 
 ### Backend (AWS)
-- AWS Amplify for hosting and CI/CD
+- AWS Amplify for serverless hosting and CI/CD
 - API Gateway for HTTP API endpoints
 - Lambda functions for serverless compute
 - DynamoDB for data storage
@@ -109,7 +108,7 @@ react-resume/
 ### Certificate Image Lambda
 
 This Lambda function:
-- Generates pre-signed URLs for accessing private certificate images stored in S3
+- Generates pre-signed URLs for accessing certificate images stored in S3
 - Implements proper access control for sensitive documents
 - Secures professional credentials while allowing display in the browser
 
@@ -124,8 +123,8 @@ This Lambda function:
 ### Visitor Tracking
 
 This system:
-- Anonymously tracks site visitors for analytics
-- Stores data in DynamoDB
+- Anonymously logs site visits using header info
+- Stores data in DynamoDB for analytics
 - Respects user privacy with anonymous metadata collection
 
 ## Contributing

@@ -1,54 +1,42 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './ContactForm.css';
 
 interface ContactFormProps {
   onClose: () => void;
 }
 
-interface FormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-}
-
 const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
   
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }));
     
-    // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prevErrors => ({
-        ...prevErrors,
-        [name]: undefined
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
       }));
     }
   };
   
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
     
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
@@ -79,26 +67,44 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
     setSubmitError(null);
     
     try {
-      // Non-functional, but we would use SNS to send an email
+      const response = await axios.post(
+        `${import.meta.env.VITE_SNS_API_URL}/contact`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setSubmitSuccess(true);
-      // Reset form after successful submission
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      
-      // Close modal after 3 seconds
-      setTimeout(() => {
-        onClose();
-      }, 3000);
-    } catch (error) {
-      setSubmitError('There was an error sending your message. Please try again later.');
+      if (response.data.success) {
+        setSubmitSuccess(true);
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        
+        // Close modal after 3 seconds on success
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        throw new Error(response.data.error || 'Failed to send message');
+      }
+    } catch (error: unknown) {
+      console.error('Error submitting form:', error);
+
+      if (axios.isAxiosError(error)) {
+          error.response?.data?.message ||
+          error.message ||
+          'There was an error sending your message. Please try again later.'
+      }
+      setSubmitError(
+        'There was an error sending your message. Please try again later.'
+      );
     } finally {
       setIsSubmitting(false);
     }
