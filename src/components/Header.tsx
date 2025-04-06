@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="header-content">
         <div className="profile-photo">
           
-          <img src="../../public/profilephoto.jpg" alt="Caleb N. Cline" />
+          <img src="/profilephoto.jpg" alt="Caleb N. Cline" />
         </div>
         
         <div className="header-info">
