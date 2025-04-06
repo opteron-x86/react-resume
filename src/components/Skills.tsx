@@ -20,7 +20,7 @@ const Skills: React.FC = () => {
   const technicalSkills = [
     {
       category: 'Cloud Platforms',
-      skills: 'AWS (EC2, S3, IAM, DynamoDB, RDS, Amplify), Azure, GCP, OCI'
+      skills: 'AWS (EC2, S3, IAM, DynamoDB, RDS, Lambda, API Gateway, AppSync, Cognito, CloudFormation, Amplify), Azure, GCP, OCI'
     },
     {
       category: 'Cloud Security',
