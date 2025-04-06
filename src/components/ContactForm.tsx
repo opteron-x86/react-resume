@@ -79,8 +79,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
     setSubmitError(null);
     
     try {
-      // In a real application, you would connect this to AWS API Gateway, Lambda,
-      // SNS, SES, or another AWS service to handle the form submission.
+      // Non-functional, but we would use SNS to send an email
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));

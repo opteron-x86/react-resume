@@ -25,8 +25,6 @@ export function useVisitorTracking() {
           deviceType: /Mobile|Android|iPhone|iPad|iPod/i.test(userAgent) ? 'mobile' : 'desktop',
           browserName: browserInfo,
           osName: osInfo,
-          // Note: country and region would be null here as we can't determine these client-side
-          // We'll add a server-side solution for this below
         });
         
         setIsTracked(true);

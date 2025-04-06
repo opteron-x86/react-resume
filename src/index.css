@@ -157,3 +157,20 @@ input, textarea, select {
   white-space: nowrap;
   border-width: 0;
 }
+
+.security-clearance-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+  border-left: 3px solid var(--secondary-color);
+  border-radius: 4px;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.clearance-icon {
+  color: var(--secondary-color);
+}

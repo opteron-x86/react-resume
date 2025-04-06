@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
       title: 'Interactive Resume Web Application',
       description: 'This very application - a modern, responsive web resume built with React, TypeScript, and AWS Amplify',
       tags: ['React', 'TypeScript', 'AWS Amplify', 'Portfolio'],
-      detail: 'Created this interactive resume web application using React, TypeScript, and AWS Amplify to showcase both professional experience and cloud development skills. The application features responsive design, authentication capabilities, and is deployed using a CI/CD pipeline through AWS Amplify. This project demonstrates practical implementation of modern web development and cloud infrastructure skills.'
+      detail: 'Created this interactive resume web application using React, TypeScript, and AWS Amplify to showcase both professional experience and cloud development skills. The application features responsive design, interactive elements, notification services, security best practices, and is deployed using a CI/CD pipeline through GitHub Actions and AWS Amplify. This project demonstrates practical implementation of modern web development and cloud infrastructure skills.'
     }
   ];
 

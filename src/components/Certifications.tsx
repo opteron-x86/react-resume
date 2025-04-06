@@ -64,10 +64,10 @@ const Certifications: React.FC = () => {
       logo: 'comptia-logo'
     },
     {
-      id: 'ceh',
-      name: 'Certified Ethical Hacker (CEH)',
-      issuer: 'EC-Council',
-      logo: 'eccouncil-logo'
+      id: 'lpi',
+      name: 'Linux Essentials',
+      issuer: 'Linux Professional Institute',
+      logo: 'lpi-logo'
     },
     {
       id: 'aws-cp',
@@ -82,10 +82,10 @@ const Certifications: React.FC = () => {
       logo: 'microsoft-logo'
     },
     {
-      id: 'lpi',
-      name: 'Linux Professional Institute (LPI) Linux Essentials',
-      issuer: 'Linux Professional Institute',
-      logo: 'lpi-logo'
+      id: 'ceh',
+      name: 'Certified Ethical Hacker (CEH)',
+      issuer: 'EC-Council',
+      logo: 'eccouncil-logo'
     },
     {
       id: 'itil',
@@ -107,7 +107,7 @@ const Certifications: React.FC = () => {
     
   try {
     // Call the HTTP API to get a pre-signed URL using Axios
-    const response = await axios.get(`https://gkeqffmnd0.execute-api.us-east-2.amazonaws.com/certificates/${cert.id}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/certificates/${cert.id}`);
     setCertImageUrl(response.data.url);
     } catch (err) {
     console.error('Error fetching certification image:', err);
